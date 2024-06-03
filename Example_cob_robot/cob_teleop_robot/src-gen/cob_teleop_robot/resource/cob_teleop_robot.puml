@@ -1,0 +1,35 @@
+@startuml
+
+/'SUBSYSTEMS'/
+
+  component joy_node {
+
+/' PORTS DEFINED AS AVAILABLE IN THE ROSSYSTEM FILE '/
+    portout joy_node.joy_pub as "joy_pub" #blue
+
+/' PORTS FROM THE ORIGINAL NODE '/
+  }
+
+  component twist_mux {
+
+/' PORTS DEFINED AS AVAILABLE IN THE ROSSYSTEM FILE '/
+    portout twist_mux._base_twist_controller_command as "/base/twist_controller/command" #blue
+    portin twist_mux.cmd_vel_sub as "cmd_vel_sub" #blue
+
+/' PORTS FROM THE ORIGINAL NODE '/
+  }
+
+  component teleop_twist_joy_node {
+
+/' PORTS DEFINED AS AVAILABLE IN THE ROSSYSTEM FILE '/
+    portin teleop_twist_joy_node.joy_sub as "joy_sub" #blue
+    portout teleop_twist_joy_node.cmd_vel_pub as "cmd_vel_pub" #blue
+
+/' PORTS FROM THE ORIGINAL NODE '/
+  }
+
+  twist_mux._base_twist_controller_command --> base_driver_ros1._base_twist_controller_command_sub
+  joy_node.joy_pub --> teleop_twist_joy_node.joy_sub
+  teleop_twist_joy_node.cmd_vel_pub --> twist_mux.cmd_vel_sub
+
+@enduml

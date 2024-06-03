@@ -1,0 +1,3 @@
+bridge_cob_teleop_robot_topics/topics:
+- topic: /base/twist_controller/command
+  type: geometry_msgs/msg/Twist
