@@ -40,7 +40,6 @@ def generate_launch_description():
     output='screen',
     name="joy_node",
     remappings=[
-      ("joy", "joy_pub"),
       ("joy", "joy_pub")]
     ,
     parameters=[{
@@ -56,8 +55,6 @@ def generate_launch_description():
     name="twist_mux",
     remappings=[
       ("cmd_vel_out", "/base/twist_controller/command"),
-      ("cmd_vel", "cmd_vel_sub"),
-      ("cmd_vel_out", "/base/twist_controller/command"),
       ("cmd_vel", "cmd_vel_pub")]
     ,
     parameters = [twist_mux_config]
@@ -69,8 +66,6 @@ def generate_launch_description():
     output='screen',
     name="teleop_twist_joy_node",
     remappings=[
-      ("joy", "joy_sub"),
-      ("cmd_vel", "cmd_vel_pub"),
       ("joy", "joy_pub"),
       ("cmd_vel", "cmd_vel_pub")]
     ,
